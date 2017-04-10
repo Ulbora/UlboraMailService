@@ -3,24 +3,7 @@ Ulbora Mail Service
 
 A Mail Micro Service
 
-## Get Challenge
-
-```
-Example Request
-GET:
-URL: 
-  
-```
-
-```
-Example Response   
-
-
-  
-```
-
-## Validate Challenge
-
+## Sent Mail
 
 ```   
 POST:
