@@ -76,7 +76,7 @@ describe('service', function () {
                 res.send = function (val) {
                     if (this.statusCode === 401) {
                         assert(true);
-                    } else if (val && val.id) {
+                    } else if (val && val.success) {
                         clientObj = val;
                         roleId = val.success;
                         console.log("sendMail reaponse: " + JSON.stringify(val));
@@ -90,8 +90,63 @@ describe('service', function () {
             }, 1000);
         });
     });
-
-
+    
+    /*
+     describe('#sendMail()', function () {
+        it('should sendMail', function (done) {
+            setTimeout(function () {
+                var req = {};
+                var header = function (val) {
+                    if (val === "Authorization") {
+                        return "Bearer " + token;
+                    } else if (val === "userId") {
+                        return undefined;
+                    } else if (val === "clientId") {
+                        return "403";
+                    }
+                };
+                req.header = header;
+                req.protocol = "https";
+                req.hostname = "abc.com";
+                req.body = {
+                    toEmail: testEmails.toEmail,
+                    fromEmail: testEmails.fromEmail,
+                    subject: "test",
+                    text: "test",
+                    clientId: 1
+                };
+                req.is = function (val) {
+                    console.log("is: " + val);
+                    if (val === 'application/json') {
+                        return true;
+                    } else {
+                        return false;
+                    }
+                };
+                var res = {};
+                res.statusCode;
+                res.status = function (val) {
+                    this.statusCode = val;
+                    console.log("res status: " + val);
+                };
+                res.send = function (val) {
+                    if (this.statusCode === 401) {
+                        assert(false);
+                    } else if (val && val.success) {
+                        clientObj = val;
+                        roleId = val.success;
+                        console.log("sendMail reaponse: " + JSON.stringify(val));
+                        assert(true);
+                    } else {
+                        assert(false);
+                    }
+                    done();
+                };
+                service.sendMail(req, res);
+            }, 1000);
+        });
+    });
+    */
 });
 
 
