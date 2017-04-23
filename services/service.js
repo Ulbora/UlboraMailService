@@ -22,7 +22,10 @@
 
 var db;
 var mailManager = require("../managers/mailManager");
-var oauth2 = require("../oauth2/oauth2");
+var constants = require("../constants/constants");
+var oauth2 = require("ulbora-oauth2");
+
+var validationUrl = process.env.OAUTH2_VALIDATION_URI || constants.OAUTH2_VALIDATION_URI;
 exports.init = function (database) {
     db = database;
     mailManager.init(db);
@@ -37,7 +40,7 @@ exports.sendMail = function (req, res) {
             uri: "/rs/mail/send",
             scope: "write"
         };
-        oauth2.authorize(req, res, me, function () {
+        oauth2.authorize(req, res, me, validationUrl, function () {
             var reqBody = req.body;
             var bodyJson = JSON.stringify(reqBody);
             console.log("body: " + bodyJson);
