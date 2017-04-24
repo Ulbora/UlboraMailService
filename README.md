@@ -7,7 +7,7 @@ A Mail Micro Service
 
 ```   
 POST:
-URL: 
+URL: http://localhost:3002/rs/sendMail
 Example Text Request
 {
    "toEmail":"someMail@some.com",
@@ -22,7 +22,7 @@ Example Text Request
 
 ```   
 POST:
-URL: 
+URL: http://localhost:3002/rs/sendMail
 Example HTML Request
 {
    "toEmail":"someMail@some.com",
