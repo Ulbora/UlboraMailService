@@ -21,7 +21,7 @@
 
 
 
-var service = require("../service/service");
+var service = require("../services/service");
 
 exports.init = function(app, db){
     //init
