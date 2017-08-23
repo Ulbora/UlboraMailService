@@ -56,7 +56,7 @@ exports.getMailServer = function (clientId, callback) {
 
     pool.query(serverQuery, args, function (err, result) {
         if (!err && result) {
-            console.log("found data: " + JSON.stringify(result));            
+            console.log("found data: " + JSON.stringify(result));
             if (result && result.length > 0) {
                 rtn.success = true;
                 var s = result[0];
@@ -80,7 +80,66 @@ exports.getMailServer = function (clientId, callback) {
     });
 };
 
+exports.setMailServer = function (json, callback) {
+    var rtn = {
+        success: false        
+    };
+    var serverQuery = "INSERT INTO mail_server Set ?";
+    var args = {
+        mail_server: json.mailServer,
+        secure_connection: json.secureConnection,
+        port: json.port,
+        debug: json.debug,
+        username: json.username,
+        password: json.password,
+        client_id: json.clientId
+    };
+    pool.query(serverQuery, args, function (err, result) {
+        console.log("result in add server: " + JSON.stringify(result));
+        if (!err && result.insertId) {
+            rtn.id = result.insertId;
+            rtn.success = true;
+            callback(rtn);
+        } else {
+            console.error("Database Insert error: " + JSON.stringify(err));
+            rtn.message = "Database Insert failed.";
+            callback(rtn);
+        }
+    });
 
+};
+
+
+exports.updateMailServer = function (json, callback) {
+    var rtn = {
+        success: false
+    };
+    var serverQuery = "UPDATE mail_server SET mail_server = ?, secure_connection = ?, port = ?, " +
+                      "debug = ?, username = ?, password = ? " +
+                      "where id = ? and client_id = ? ";
+    var args = [
+        json.mailServer,
+        json.secureConnection,
+        json.port,
+        json.debug,
+        json.username,
+        json.password,
+        json.id,
+        json.clientId
+    ];
+    pool.query(serverQuery, args, function (err, result) {
+        console.log("result in update server: " + JSON.stringify(result));
+        if (!err) {
+            rtn.success = true;
+            callback(rtn);
+        } else {
+            console.error("Database Insert error: " + JSON.stringify(err));
+            rtn.message = "Database Insert failed.";
+            callback(rtn);
+        }
+    });
+
+};
 
 exports.getTestEmail = function (callback) {
     var rtn = {
@@ -89,15 +148,15 @@ exports.getTestEmail = function (callback) {
         fromEmail: null
     };
     var emailQuery = " select * " +
-            " from test_table "; 
-    
+            " from test_table ";
+
     pool.query(emailQuery, function (err, result) {
         if (!err && result) {
-            console.log("found data: " + JSON.stringify(result));            
-            if (result && result.length > 0) {   
+            console.log("found data: " + JSON.stringify(result));
+            if (result && result.length > 0) {
                 rtn.success = true;
                 rtn.toEmail = result[0].to_email;
-                rtn.fromEmail = result[0].from_email;                
+                rtn.fromEmail = result[0].from_email;
             }
             callback(rtn);
         } else {

@@ -59,3 +59,65 @@ exports.sendMail = function (json, callback) {
     }
 };
 
+
+exports.setMailServer = function (json, callback) {
+    var returnVal = {
+        success: false,
+        id: null
+    };
+    var isOk = manager.securityCheck(json);
+    if (isOk) {
+        db.setMailServer(json, function (result) {
+            if (result && result.success) {
+                returnVal.success = result.success;
+                returnVal.id = result.id;
+                callback(returnVal);
+            } else {
+                callback(returnVal);
+            }
+        });
+    } else {
+        callback(returnVal);
+    }
+};
+
+
+exports.updateMailServer = function (json, callback) {
+    var returnVal = {
+        success: false
+    };
+    var isOk = manager.securityCheck(json);
+    if (isOk) {
+        console.log("update server req in manager: " + JSON.stringify(json));              
+            db.updateMailServer(json, function (result) {
+                if (result && result.success) {
+                    returnVal.success = result.success;
+                    callback(returnVal);
+                } else {
+                    returnVal.message = "Error updating server";
+                    callback(returnVal);
+                }
+            });
+        
+    } else {
+        callback(returnVal);
+    }
+};
+
+
+
+exports.getMailServer = function (clientId, callback) {
+    var isOk = manager.securityCheck(clientId);
+    if (isOk) {
+        db.getMailServer(clientId, function (result) {
+            if (result) {
+                callback(result);
+            } else {
+                callback({});
+            }
+        });
+    } else {
+        callback({});
+    }
+};
+

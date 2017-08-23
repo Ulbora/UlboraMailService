@@ -39,6 +39,14 @@ exports.connect = function (host, user, pw, database, cpnum) {
     db.connect(host, user, pw, database, cpnum);
 };
 
+exports.setMailServer = function (json, callback) {
+    db.setMailServer(json, callback);
+};
+
+exports.updateMailServer = function (json, callback) {
+    db.updateMailServer(json, callback);
+};
+
 exports.getMailServer = function (clientId, callback) {
     db.getMailServer(clientId, callback);
 };

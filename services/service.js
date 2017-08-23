@@ -56,6 +56,70 @@ exports.sendMail = function (req, res) {
 };
 
 
+exports.addMailServer = function (req, res) {
+    if (req.is('application/json')) {
+        var me = {
+            role: "admin",
+            uri: "/rs/mailServer/add",
+            scope: "write"
+        };
+        oauth2.authorize(req, res, me, validationUrl, function () {
+            var reqBody = req.body;
+            reqBody.clientId = req.header("clientId");
+            var bodyJson = JSON.stringify(reqBody);
+            console.log("body: " + bodyJson);
+            mailManager.setMailServer(reqBody, function (result) {
+                res.send(result);
+            });
+        });
+    } else {
+        res.status(415);
+        res.send({success: false});
+    }
+};
+
+
+exports.updateMailServer = function (req, res) {
+    if (req.is('application/json')) {
+        var me = {
+            role: "admin",
+            uri: "/rs/mailServer/update",
+            scope: "write"
+        };
+        oauth2.authorize(req, res, me, validationUrl, function () {
+            var reqBody = req.body;
+            reqBody.clientId = req.header("clientId");
+            var bodyJson = JSON.stringify(reqBody);
+            console.log("body: " + bodyJson);
+            mailManager.updateMailServer(reqBody, function (result) {
+                res.send(result);
+            });
+        });
+    } else {
+        res.status(415);
+        res.send({success: false});
+    }
+};
+
+
+
+exports.getMailServer = function (req, res) {
+            var me = {
+            role: "admin",
+            uri: "/rs/mailServer/get",
+            scope: "read"
+        };
+        oauth2.authorize(req, res, me, validationUrl, function () {            
+            var clientId = req.header("clientId"); 
+            mailManager.getMailServer(clientId, function (result) {
+                res.send(result);
+            });
+        });
+    
+};
+
+
+
 exports.getClientId = function (clientIdStr) {
     var clientId;
     if (clientIdStr) {
