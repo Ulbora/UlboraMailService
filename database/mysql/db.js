@@ -20,6 +20,7 @@
  */
 
 var atob = require('atob'); //base64 to json
+var btoa = require('btoa');
 var mysql = require('mysql');
 var pool;
 exports.connect = function (host, user, pw, db, cpnum) {
@@ -91,7 +92,7 @@ exports.setMailServer = function (json, callback) {
         port: json.port,
         debug: json.debug,
         username: json.username,
-        password: json.password,
+        password: btoa(json.password),
         client_id: json.clientId
     };
     pool.query(serverQuery, args, function (err, result) {
@@ -114,6 +115,8 @@ exports.updateMailServer = function (json, callback) {
     var rtn = {
         success: false
     };
+    json.password = btoa(json.password);
+    
     var serverQuery = "UPDATE mail_server SET mail_server = ?, secure_connection = ?, port = ?, " +
                       "debug = ?, username = ?, password = ? " +
                       "where id = ? and client_id = ? ";

@@ -28,5 +28,8 @@ exports.init = function(app, db){
     service.init(db);    
     
     // challenge      
-    app.post('/rs/sendMail', service.sendMail);
+    app.post('/rs/mail/send', service.sendMail);
+    app.post('/rs/mailServer/add', service.addMailServer);
+    app.put('/rs/mailServer/update', service.updateMailServer);
+    app.get('/rs/mailServer/get', service.getMailServer);
 };

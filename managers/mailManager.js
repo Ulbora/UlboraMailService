@@ -66,7 +66,7 @@ exports.setMailServer = function (json, callback) {
         id: null
     };
     var isOk = manager.securityCheck(json);
-    if (isOk) {
+    if (isOk && json.password) {
         db.setMailServer(json, function (result) {
             if (result && result.success) {
                 returnVal.success = result.success;
@@ -87,7 +87,7 @@ exports.updateMailServer = function (json, callback) {
         success: false
     };
     var isOk = manager.securityCheck(json);
-    if (isOk) {
+    if (isOk && json.password) {        
         console.log("update server req in manager: " + JSON.stringify(json));              
             db.updateMailServer(json, function (result) {
                 if (result && result.success) {
