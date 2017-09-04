@@ -25,6 +25,7 @@ describe('mysql DB', function () {
                 debug: true,
                 username: "bob",
                 password: "bob",
+                fromAddress: "bob@bob.com",
                 clientId: 2
                 
             };
@@ -54,6 +55,7 @@ describe('mysql DB', function () {
                 debug: true,
                 username: "bobby",
                 password: "bob",
+                fromAddress: "bob@bob1.com",
                 clientId: 2
                 
             };

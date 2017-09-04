@@ -69,6 +69,7 @@ exports.getMailServer = function (clientId, callback) {
                 server.debug = (s.debug === 1) ? true : false;
                 server.username = s.username;
                 server.password = atob(s.password.toString());
+                server.fromAddress = s.from_address;
                 server.clientId = s.client_id;
                 rtn.mailServer = server;
             }
@@ -93,6 +94,7 @@ exports.setMailServer = function (json, callback) {
         debug: json.debug,
         username: json.username,
         password: btoa(json.password),
+        from_address: json.fromAddress,
         client_id: json.clientId
     };
     pool.query(serverQuery, args, function (err, result) {
@@ -118,7 +120,7 @@ exports.updateMailServer = function (json, callback) {
     json.password = btoa(json.password);
     
     var serverQuery = "UPDATE mail_server SET mail_server = ?, secure_connection = ?, port = ?, " +
-                      "debug = ?, username = ?, password = ? " +
+                      "debug = ?, username = ?, password = ?, from_address = ? " +
                       "where id = ? and client_id = ? ";
     var args = [
         json.mailServer,
@@ -127,6 +129,7 @@ exports.updateMailServer = function (json, callback) {
         json.debug,
         json.username,
         json.password,
+        json.fromAddress,
         json.id,
         json.clientId
     ];

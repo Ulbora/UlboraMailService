@@ -29,6 +29,7 @@ describe('mysql DB role', function () {
                 debug: true,
                 username: "bob",
                 password: "bob",
+                fromAddress: "bob@bob.com",
                 clientId: 1
                 
             };
@@ -58,6 +59,7 @@ describe('mysql DB role', function () {
                 debug: true,
                 username: "bobby",
                 password: "bob",
+                fromAddress: "bob@bob1.com",
                 clientId: 1
                 
             };
