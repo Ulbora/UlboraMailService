@@ -29,8 +29,15 @@ exports.sendMail = function (reqBody, mailServer, callback) {
         success: false,
         message: ""
     };
-    var fromEmailAddress = reqBody.fromEmail;
+    var fromEmailAddress = reqBody.fromEmail;   
+    if(fromEmailAddress === undefined || fromEmailAddress === null || fromEmailAddress === ""){
+        fromEmailAddress = mailServer.fromAddress;
+    }
+    
     var toEmailAddress = reqBody.toEmail;
+    if(toEmailAddress === undefined || toEmailAddress === null || toEmailAddress === ""){
+        toEmailAddress = mailServer.fromAddress;
+    }
     var subject = reqBody.subject;   
     var text;
     if(reqBody.text){
