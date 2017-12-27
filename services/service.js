@@ -37,7 +37,7 @@ exports.sendMail = function (req, res) {
     if (req.is('application/json')) {
         var me = {
             role: "admin",
-            uri: "/rs/mail/send",
+            uri: "/ulbora/rs/mail/send",
             scope: "write"
         };
         oauth2.authorize(req, res, me, validationUrl, function () {
@@ -60,7 +60,7 @@ exports.addMailServer = function (req, res) {
     if (req.is('application/json')) {
         var me = {
             role: "admin",
-            uri: "/rs/mailServer/add",
+            uri: "/ulbora/rs/mailServer/add",
             scope: "write"
         };
         oauth2.authorize(req, res, me, validationUrl, function () {
@@ -83,7 +83,7 @@ exports.updateMailServer = function (req, res) {
     if (req.is('application/json')) {
         var me = {
             role: "admin",
-            uri: "/rs/mailServer/update",
+            uri: "/ulbora/rs/mailServer/update",
             scope: "write"
         };
         oauth2.authorize(req, res, me, validationUrl, function () {
@@ -106,7 +106,7 @@ exports.updateMailServer = function (req, res) {
 exports.getMailServer = function (req, res) {
             var me = {
             role: "admin",
-            uri: "/rs/mailServer/get",
+            uri: "/ulbora/rs/mailServer/get",
             scope: "read"
         };
         oauth2.authorize(req, res, me, validationUrl, function () {            
