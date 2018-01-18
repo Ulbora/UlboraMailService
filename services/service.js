@@ -43,8 +43,8 @@ exports.sendMail = function (req, res) {
         oauth2.authorize(req, res, me, validationUrl, function () {
             var reqBody = req.body;
             reqBody.clientId = req.header("clientId");
-            var bodyJson = JSON.stringify(reqBody);
-            console.log("body: " + bodyJson);
+            //var bodyJson = JSON.stringify(reqBody);
+            //console.log("body: " + bodyJson);
             mailManager.sendMail(reqBody, function (result) {
                 res.send(result);
             });
@@ -66,8 +66,8 @@ exports.addMailServer = function (req, res) {
         oauth2.authorize(req, res, me, validationUrl, function () {
             var reqBody = req.body;
             reqBody.clientId = req.header("clientId");
-            var bodyJson = JSON.stringify(reqBody);
-            console.log("body: " + bodyJson);
+            //var bodyJson = JSON.stringify(reqBody);
+            //console.log("body: " + bodyJson);
             mailManager.setMailServer(reqBody, function (result) {
                 res.send(result);
             });
@@ -89,8 +89,8 @@ exports.updateMailServer = function (req, res) {
         oauth2.authorize(req, res, me, validationUrl, function () {
             var reqBody = req.body;
             reqBody.clientId = req.header("clientId");
-            var bodyJson = JSON.stringify(reqBody);
-            console.log("body: " + bodyJson);
+            //var bodyJson = JSON.stringify(reqBody);
+            //console.log("body: " + bodyJson);
             mailManager.updateMailServer(reqBody, function (result) {
                 res.send(result);
             });

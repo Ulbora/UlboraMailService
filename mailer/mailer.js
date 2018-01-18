@@ -23,8 +23,8 @@
 var nodemailer = require('nodemailer');
 
 exports.sendMail = function (reqBody, mailServer, callback) {
-    console.log("body: " + JSON.stringify(reqBody));
-    console.log("mailServer: " + JSON.stringify(mailServer));
+    //console.log("body: " + JSON.stringify(reqBody));
+    //console.log("mailServer: " + JSON.stringify(mailServer));
     var rtn = {
         success: false,
         message: ""
@@ -62,7 +62,7 @@ exports.sendMail = function (reqBody, mailServer, callback) {
                 rtn.message = error;
                 callback(rtn);
             } else {
-                console.log('Message sent: ' + info.response);
+                //console.log('Message sent: ' + info.response);
                 rtn.success = true;
                 callback(rtn);
             }
@@ -87,7 +87,7 @@ createTransport = function (mailServer, callback) {
             rejectUnauthorized: false
         }
     };
-    console.log("mail server options: " + JSON.stringify(tpOpt));
+    //console.log("mail server options: " + JSON.stringify(tpOpt));
     var transport = nodemailer.createTransport(tpOpt);
     callback(transport);
 

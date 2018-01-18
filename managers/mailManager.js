@@ -38,7 +38,7 @@ exports.sendMail = function (json, callback) {
     var isOk = manager.securityCheck(json);
     if (isOk) {        
         db.getMailServer(json.clientId, function (serverResult) {
-            console.log("serverResult in manager: " + JSON.stringify(serverResult));
+            //console.log("serverResult in manager: " + JSON.stringify(serverResult));
             if (serverResult && serverResult.success) {
                 server = serverResult.mailServer;
                 delete json.clientId;
@@ -88,7 +88,7 @@ exports.updateMailServer = function (json, callback) {
     };
     var isOk = manager.securityCheck(json);
     if (isOk && json.password) {        
-        console.log("update server req in manager: " + JSON.stringify(json));              
+        //console.log("update server req in manager: " + JSON.stringify(json));              
             db.updateMailServer(json, function (result) {
                 if (result && result.success) {
                     returnVal.success = result.success;

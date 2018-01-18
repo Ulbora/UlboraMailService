@@ -57,7 +57,7 @@ exports.getMailServer = function (clientId, callback) {
 
     pool.query(serverQuery, args, function (err, result) {
         if (!err && result) {
-            console.log("found data: " + JSON.stringify(result));
+           //console.log("found data: " + JSON.stringify(result));
             if (result && result.length > 0) {
                 rtn.success = true;
                 var s = result[0];
@@ -98,7 +98,7 @@ exports.setMailServer = function (json, callback) {
         client_id: json.clientId
     };
     pool.query(serverQuery, args, function (err, result) {
-        console.log("result in add server: " + JSON.stringify(result));
+        //console.log("result in add server: " + JSON.stringify(result));
         if (!err && result.insertId) {
             rtn.id = result.insertId;
             rtn.success = true;
@@ -134,7 +134,7 @@ exports.updateMailServer = function (json, callback) {
         json.clientId
     ];
     pool.query(serverQuery, args, function (err, result) {
-        console.log("result in update server: " + JSON.stringify(result));
+        //console.log("result in update server: " + JSON.stringify(result));
         if (!err) {
             rtn.success = true;
             callback(rtn);
@@ -158,7 +158,7 @@ exports.getTestEmail = function (callback) {
 
     pool.query(emailQuery, function (err, result) {
         if (!err && result) {
-            console.log("found data: " + JSON.stringify(result));
+            //console.log("found data: " + JSON.stringify(result));
             if (result && result.length > 0) {
                 rtn.success = true;
                 rtn.toEmail = result[0].to_email;
