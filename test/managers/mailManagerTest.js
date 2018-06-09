@@ -66,7 +66,7 @@ describe('Mail Manager', function () {
                     "</head>" +
                     "<body>" +
                     "<div>" +
-                    "<h3>Copyright (C) 2016 Ulbora Labs Inc. (www.ulboralabs.com)</h3>" +
+                    "<h3>Copyright (C) 2016 Ulbora Labs LLC. (www.ulboralabs.com)</h3>" +
                     "<h3>All rights reserved.</h3>" +
                     "</div>" +
                     "</body>" +
